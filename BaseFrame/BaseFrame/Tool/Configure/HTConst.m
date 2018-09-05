@@ -38,9 +38,9 @@ NSString *const DataIndex = @"DataIndex";
 /********** 网络请求地址 ***********/
 
 // 服务地址
-NSString *const  HTURL = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  密码:0dsf";
-NSString *const  HTURL_Test = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  密码:0dsf";
-NSString *const HTImgUrl = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  密码:0dsf";
+NSString *const  HTURL = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  ";
+NSString *const  HTURL_Test = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ ";
+NSString *const HTImgUrl = @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  ";
 // 首页
 NSString *const  CityTravel_URL = @"/v2/index/";
 // 分类

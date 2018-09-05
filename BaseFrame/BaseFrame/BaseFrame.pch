@@ -1,0 +1,336 @@
+//
+//  BaseFrame.pch
+//  BaseFrame
+//
+//  Created by 邱 德政 on 17/3/2.
+//  Copyright © 2017年 济南联祥技术有限公司. All rights reserved.
+//
+
+//
+//  EveryDayBenefit.pch
+//  EveryDayBenefit
+//
+//  Created by 邱 德政 on 16/8/11.
+//  Copyright © 2016年 济南联祥技术有限公司. All rights reserved.
+//
+
+#ifndef EveryDayBenefit_pch
+#define EveryDayBenefit_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
+#import "HTConst.h"
+#import "HTRefreshGifFooter.h"
+#import "HTRefreshGifHeader.h"
+#import "HTNetWorking.h"
+#import "HTUtilsMethod.h"
+#import "AppDelegate.h"
+#import "CommonElement.h"
+#import "Masonry.h"
+#import "ReactiveCocoa.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "ReactiveCocoa.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/SDWebImageManager.h>
+#import "SDWebImage/SDImageCache.h"
+#import "UIViewExt.h"
+#import "Command.h"
+#import "HTServerConfig.h"
+
+//空值判断
+static inline BOOL IsEmptyValue(id thing) {
+    return thing == nil
+    || ([thing respondsToSelector:@selector(length)]
+        && [(NSData *)thing length] == 0)
+    || ([thing respondsToSelector:@selector(count)]
+        && [(NSArray *)thing count] == 0)
+    ||  ([thing isKindOfClass:[NSNull class]]);
+}
+
+#endif
+
+//
+#endif
+//
+//#define REQUEST_All_city_list  @"all_city_list"
+//
+#ifdef DEBUG
+//#define NSLog(...) NSLog(__VA_ARGS__)
+//#define debugMethod() NSLog(@"%s", __func__)
+//#else
+//#define NSLog(...)
+//#define debugMethod()
+
+#endif
+//
+
+//
+#define statusbarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+
+#define SCREEN_SIZE [[UIScreen mainScreen] bounds].size
+#define kString(string) [NSString stringWithFormat:@"%@",string]
+
+#define ScreenWidth self.view.frame.size.width
+#define ScreenHeight self.view.frame.size.height
+
+#define mScreenWidth [UIScreen mainScreen].bounds.size.width//设备宽
+#define kDeviceFrame [UIScreen mainScreen].bounds//设备坐标
+#define StatusBarStyle UIStatusBarStyleLightContent
+#define mScreenHeight [UIScreen mainScreen].bounds.size.height//设备高
+#define APPDelegate [UIApplication sharedApplication].delegate
+#define MYColor       0xFFB400
+#pragma mark 16进制颜色
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define COLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+#define NavBarItemColor UIColorFromRGB(0xeb6876)
+#define BackGorundColor [UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]
+#define TabBarColor [UIColor colorWithRed:200/255.0 green:26/255.0 blue:21/255.0 alpha:1]
+#define SecondBackGorundColor [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1]
+#define LineColor [UIColor colorWithRed:228/255.0 green:228/255.0 blue:228/255.0 alpha:1]
+#define GrayTitleColor [UIColor colorWithRed:163/255.0 green:163/255.0 blue:163/255.0 alpha:1]
+
+
+
+#define NLSystemVersionGreaterOrEqualThan(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
+#define IOS7 NLSystemVersionGreaterOrEqualThan(7.0)
+#define DebugLog(s, ...) NSLog(@"%s(%d): %@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
+
+#define NSSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#define HightRuler (kDevice_Is_iPhone5 ? 1.0 : (kDevice_Is_iPhone6 ? 1.172 : (kDevice_Is_iPhone6Plus ? 1.2938 : (kDevice_Is_iPhone4s ? 1.0 : 1.171) ) ) )
+
+#define kDevice_Is_iPhone4s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1080, 1920), [[UIScreen mainScreen] currentMode].size) : NO)
+//7和6都是一样的。尺寸。
+
+#define MYHEIGHT [[UIScreen mainScreen] bounds].size.height/667
+#define MYWIDTH  [[UIScreen mainScreen] bounds].size.width/375
+
+#define PCMTextFont13 [UIFont systemFontOfSize:13.0]
+#define PCMTextFont14 [UIFont systemFontOfSize:14.0]
+#define PCMTextFont15 [UIFont systemFontOfSize:15.0]
+
+//登录之后就返回
+#define USERID @"ACUSEID"                 //用户ID
+//#define USERLINKER @"USERLINKER"        //用户绑定分销人
+//#define USERLINKERID @"USERLINKERID"    //用户分销人ID
+#define USENAME @"ACUSENAME"         //姓名
+#define USERPHONE @"ACUSERPHONE"     //用户手机号
+#define CUSTTYPEID @"CUSTTYPEID"     //客户类型
+#define IsLogin @"ACIsLogin"
+#define PASSWORD @"ACPASSWORD"
+#define ACCOUNTNAME @"ACACCOUNTNAME"
+
+#define PROVINCEID @"ACPROVINCEID"        //省id
+#define PROVINCENAME @"ACPROVINCENAME"
+#define CITYID @"ACCITYID"                //市id
+#define CITYNAME @"ACCITYNAME"
+#define AREAID @"ACAREAID"                //地区id
+#define AREANAME @"ACAREANAME"
+#define SERVICEID @"ACSERVICEID"
+#define VILLAGEID @"ACVILLAGEID"
+#define REGITCODE @"ACREGITCODE"
+#define PAY_INTERFACE @"链接:https://pan.baidu.com/s/1qqb4s8_r-GpT_Rhduw7qvQ  密码:0dsf"
+#define KLoadDataBase @"KLoadDataBase"
+//
+//
+//#define BackColor [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1]
+//
+//
+//
+//#if __IPHONE_6_0 // iOS6 and later
+//
+//#   define kTextAlignmentCenter    NSTextAlignmentCenter
+//#   define kTextAlignmentLeft      NSTextAlignmentLeft
+//#   define kTextAlignmentRight     NSTextAlignmentRight
+//
+//#   define kTextLineBreakByWordWrapping      NSLineBreakByWordWrapping
+//#   define kTextLineBreakByCharWrapping      NSLineBreakByCharWrapping
+//#   define kTextLineBreakByClipping          NSLineBreakByClipping
+//#   define kTextLineBreakByTruncatingHead    NSLineBreakByTruncatingHead
+//#   define kTextLineBreakByTruncatingTail    NSLineBreakByTruncatingTail
+//#   define kTextLineBreakByTruncatingMiddle  NSLineBreakByTruncatingMiddle
+//
+//#else // older versions
+//
+//#   define kTextAlignmentCenter    UITextAlignmentCenter
+//#   define kTextAlignmentLeft      UITextAlignmentLeft
+//#   define kTextAlignmentRight     UITextAlignmentRight
+//
+//#   define kTextLineBreakByWordWrapping       UILineBreakModeWordWrap
+//#   define kTextLineBreakByCharWrapping       UILineBreakModeCharacterWrap
+//#   define kTextLineBreakByClipping           UILineBreakModeClip
+//#   define kTextLineBreakByTruncatingHead     UILineBreakModeHeadTruncation
+//#   define kTextLineBreakByTruncatingTail     UILineBreakModeTailTruncation
+//#   define kTextLineBreakByTruncatingMiddle   UILineBreakModeMiddleTruncation
+//
+//#endif
+//
+//#define kUIButton(rect,title,igName,view) UIButton *yzxButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];yzxButton.frame = rect;[yzxButton setTitle:title forState:UIControlStateNormal];[yzxButton setBackgroundImage:[UIImage imageNamed:igName] forState:UIControlStateNormal];[view addSubview:yzxButton];
+//
+//#define kUIImage(rect, igName,view) UIImageView *yzxIg = [[UIImageView alloc] initWithFrame:rect];yzxIg.image = [UIImage imageNamed:igName];[view addSubview:yzxIg];
+//
+//#define kUILabel(rect, textt,colorr,anlement,ziTiDaXiao,view) UILabel *yzxLabel=[[UILabel alloc] initWithFrame:rect];yzxLabel.text=textt;yzxLabel.font=[UIFont systemFontOfSize:ziTiDaXiao];yzxLabel.textAlignment=anlement;yzxLabel.textColor=colorr;[view addSubview:yzxLabel];
+//#define kViewBackColor(red,gre,blu,alphe) self.view.backgroundColor = [UIColor colorWithRed:red/255.0 green:gre/255.0 blue:blu/255.0 alpha:alphe];
+//
+//
+//
+//
+#define IS_IOS_7 ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)?YES:NO
+#define kIgWidth SCREEN_SIZE.width
+#define kApp ((AppDelegate*)([UIApplication sharedApplication].delegate))
+#define kKeyWindow [UIApplication sharedApplication].keyWindow
+// 懒加载
+
+#define HT_LAZY(object, assignment) (object = object ?: assignment)
+
+///**
+// * 默认设置
+// */
+//
+//#define KAppid @"1"
+//#define KSystem @"ios"
+//
+//#define StatusBarStyle UIStatusBarStyleLightContent
+//
+//#define StateBarHeight ((IS_IOS_7)?20:0)
+//
+//#define NavBarHeight ((IS_IOS_7)?65:45)
+//
+//#define BottomHeight ((IS_IOS_7)?49:0)
+//
+//#define ScreenHeight ((IS_IOS_7)?([UIScreen mainScreen].bounds.size.height):([UIScreen mainScreen].bounds.size.height - 20))
+//#define kyangScreen ((IS_IOS_7)?([UIScreen mainScreen].bounds.size.height):([UIScreen mainScreen].bounds.size.height - 20))-self.tabBarController.tabBar.frame.size.height
+//
+//#define ConentViewWidth  [UIScreen mainScreen].bounds.size.width
+//
+//#define ConentViewHeight ((IS_IOS_7)?([UIScreen mainScreen].bounds.size.height - NavBarHeight):([UIScreen mainScreen].bounds.size.height - NavBarHeight -20))
+//
+//#define ConentViewFrame CGRectMake(0,NavBarHeight,ConentViewWidth,ConentViewHeight)
+//
+//#define MaskViewDefaultFrame CGRectMake(0,NavBarHeight,ConentViewWidth,ConentViewHeight)
+//#define knslog(infor) NSLog(@"infor=%@\nseccess=%@\nmesg=%@",infor,[infor objectForKey:@"success"],[infor objectForKey:@"msg"]);
+//
+//#define knslogyang(dic) NSLog(@"dic=%@",dic);
+//#define DXConst_Chat_ID @"dx_chat_id"
+//#define DXConst_Chat_PWD @"dx_chat_pwd"
+//#define DXConst_Chat_Server @"dx_chat_server"
+//
+//#define DX_ISIPHONE5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define DX_ISIOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0//是不是ios7
+//
+//#define DX_UI_ViewHeight (DX_ISIPHONE5?504.0f:416.0f)//带navigationbar View 的高度
+//#define IOSCOUNT [[[UIDevice currentDevice] systemVersion] floatValue]
+//#define kTabarSize 20//商城tarbar图片高度
+//
+//#define kUserShangChengToken [[NSUserDefaults standardUserDefaults]objectForKey:@"shangChengTokenYang"]//登录商城返回token
+//#define kUserId [[[XtomManager sharedManager]motherInfor]objectForKey:@"id"]//用户的id
+//
+////下拉刷新
+//#define kguoliSuaxinJiazai(tableview) -(void)setupRefresh{[tableview addFooterWithTarget:self action:@selector(footerRereshing)];tableview.footerPullToRefreshText = @"上拉可以加载更多数据了";tableview.footerReleaseToRefreshText = @"松开马上加载更多数据了";tableview.footerRefreshingText = @"正在刷新中...";}-(void)footerRereshing{self.toprefresh = NO;self.page += 1;[self xiaLaSuaXin];dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{[tableview footerEndRefreshing];});}
+//#define kguoliSuanXinChuShiHua [self setupRefresh];self.page = 0;
+//#define kguoliSuaXinBianliang @property(nonatomic,assign)BOOL toprefresh ;@property(nonatomic,assign) int page;
+//
+//#define kXiaLaSuaXin(tableview) -(void)setupRefresh{[tableview addFooterWithTarget:self action:@selector(headrRereshingyang)];tableview.footerPullToRefreshText = @"上拉可以加载更多数据了";tableview.footerReleaseToRefreshText = @"松开马上加载更多数据了";tableview.footerRefreshingText = @"正在刷新中...";[tableview addHeaderWithTarget:self action:@selector(footerRereshing)];tableview.headerPullToRefreshText = @"下拉可以加载更多数据了";tableview.headerReleaseToRefreshText = @"松开马上加载更多数据了";tableview.headerRefreshingText = @"正在刷新中...";}-(void)footerRereshing{self.toprefresh = NO;[self shangLaSuaXin];dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{[tableview headerEndRefreshing];});}- (void)headrRereshingyang{self.toprefresh = NO;self.page += 1;[self xiaLaSuaXin];dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{[tableview footerEndRefreshing];});}
+
+
+#endif /* EveryDayBenefit_pch */
+
+#if __IPHONE_6_0 // iOS6 and later
+
+#   define kTextAlignmentCenter    NSTextAlignmentCenter
+#   define kTextAlignmentLeft      NSTextAlignmentLeft
+#   define kTextAlignmentRight     NSTextAlignmentRight
+
+#   define kTextLineBreakByWordWrapping      NSLineBreakByWordWrapping
+#   define kTextLineBreakByCharWrapping      NSLineBreakByCharWrapping
+#   define kTextLineBreakByClipping          NSLineBreakByClipping
+#   define kTextLineBreakByTruncatingHead    NSLineBreakByTruncatingHead
+#   define kTextLineBreakByTruncatingTail    NSLineBreakByTruncatingTail
+#   define kTextLineBreakByTruncatingMiddle  NSLineBreakByTruncatingMiddle
+
+#else // older versions
+
+#   define kTextAlignmentCenter    UITextAlignmentCenter
+#   define kTextAlignmentLeft      UITextAlignmentLeft
+#   define kTextAlignmentRight     UITextAlignmentRight
+
+#   define kTextLineBreakByWordWrapping       UILineBreakModeWordWrap
+#   define kTextLineBreakByCharWrapping       UILineBreakModeCharacterWrap
+#   define kTextLineBreakByClipping           UILineBreakModeClip
+#   define kTextLineBreakByTruncatingHead     UILineBreakModeHeadTruncation
+#   define kTextLineBreakByTruncatingTail     UILineBreakModeTailTruncation
+#   define kTextLineBreakByTruncatingMiddle   UILineBreakModeMiddleTruncation
+
+#endif
+
+#define kScreen_Bounds [UIScreen mainScreen].bounds
+#define kScreen_Height [UIScreen mainScreen].bounds.size.height
+#define kScreen_Width [UIScreen mainScreen].bounds.size.width
+
+#define UI_NAVIGATION_BAR_HEIGHT    44
+
+#define kPaddingLeftWidth 15.0
+#define kLoginPaddingLeftWidth 18.0
+#define kMySegmentControl_Height 44.0
+#define kMySegmentControlIcon_Height 70.0
+
+#define  kBackButtonFontSize 16
+#define  kNavTitleFontSize 19
+#define  kBadgeTipStr @"badgeTip"
+
+#define CGM(X, Y, W, H) CGRectMake(X, Y, W, H)
+
+#define ClearColor [UIColor clearColor]
+
+#define PCMTextFont14 [UIFont systemFontOfSize:14.0]
+
+#define SYSTEMVERSION_IOS5 ([[UIDevice currentDevice].systemVersion floatValue]>4.9f)
+
+///=============================================
+/// @name Weak Object
+///=============================================
+#pragma mark - Weak Object
+#define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
+#define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
+#define ESStrong(weakVar, _var) ESStrong_DoNotCheckNil(weakVar, _var); if (!_var) return;
+
+#define ESWeak_(var) ESWeak(var, weak_##var);
+#define ESStrong_(var) ESStrong(weak_##var, _##var);
+
+/** defines a weak `self` named `__weakSelf` */
+#define ESWeakSelf      ESWeak(self, __weakSelf);
+/** defines a strong `self` named `_self` from `__weakSelf` */
+#define ESStrongSelf    ESStrong(__weakSelf, _self);
+
+//支付宝
+
+#define Ver_Address @"版本更新地址"
+#define  AliPay_APPID       @"支付宝应用ID"         //
+
+#define  PRIVATEKEY   @"支付宝秘钥"    //
+#define AliPayTrue @"AliPayTrue"
+
+
+#define WXPay_APPID @"应用ID"
+#define WXPay_mch_id @"商户ID"
+#define WXPay_key @"微信私钥"
+#define WXPayTrue @"WXPayTrue"
+#define WXout_trade_no @"WXout_trade_no"
+
